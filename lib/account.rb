@@ -9,14 +9,15 @@ class Account
   end
 
   def deposit(money)
-    transaction = Transaction.new(description: "Credit", amount: money, date: DateTime.now)
-    @transaction_history << transaction
+    raise "Please enter a positive amount" if money < 0
+    add_transaction('Credit', money)
     add(money)
   end
 
   def withdraw(money)
-    transaction = Transaction.new(description: "Debit", amount: money, date: DateTime.now)
-    @transaction_history << transaction
+    raise "Please enter a positive amount" if money < 0
+    raise "Insufficient balance in account" if @balance - money < MIN_BALANCE
+    add_transaction('Debit', money)
     deduct(money)
   end
 
@@ -26,8 +27,12 @@ private
   end
 
   def deduct(money)
-    raise "Insufficient balance in account" if @balance - money < MIN_BALANCE
     @balance-=money
+  end
+
+  def add_transaction(description, money)
+    transaction = Transaction.new(description: description, amount: money)
+    @transaction_history << transaction
   end
 
 end
