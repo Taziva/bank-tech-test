@@ -9,11 +9,25 @@ class Account
   end
 
   def deposit(money)
-    @balance+=money
+    transaction = Transaction.new(description: "Credit", amount: money, date: DateTime.now)
+    @transaction_history << transaction
+    add(money)
   end
 
   def withdraw(money)
+    transaction = Transaction.new(description: "Debit", amount: money, date: DateTime.now)
+    @transaction_history << transaction
+    deduct(money)
+  end
+
+private
+  def add(money)
+    @balance+=money
+  end
+
+  def deduct(money)
     raise "Insufficient balance in account" if @balance - money < MIN_BALANCE
     @balance-=money
   end
+
 end

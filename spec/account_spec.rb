@@ -1,6 +1,9 @@
 require 'account'
-describe Account do
+RSpec.describe Account do
   let(:account){described_class.new}
+  let(:credit_transaction){double :transaction ,:description => "Credit", :amount => 100, :date => "03/03/2017"}
+  let(:debit_transaction){double :transaction ,:description => "Debit", :amount => 100, :date => "03/03/2017"}
+
   context "on initialization" do
     it "has a balance" do
       expect(account).to respond_to(:balance)
@@ -21,6 +24,10 @@ describe Account do
         account.deposit(100)
         expect(account.balance).to eq 100
       end
+      it "records a transaction to the transaction history"do
+        account.deposit(100)
+        expect(account.transaction_history.length).to eq 1
+      end
     end
   end
 
@@ -37,6 +44,10 @@ describe Account do
       it "can't take out more money than is in the balance" do
         account.deposit(50)
         expect{account.withdraw(100)}.to raise_error("Insufficient balance in account")
+      end
+      it "records a transaction to the transaction history"do
+        account.deposit(100)
+        expect(account.transaction_history.length).to eq 1
       end
     end
   end
