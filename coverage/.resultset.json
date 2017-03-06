@@ -1,0 +1,25 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/Users/shoniwamarovatsanga/Dropbox/Projects/Course/tech-test/bank-tech-test/spec/account_spec.rb": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null
+      ],
+      "/Users/shoniwamarovatsanga/Dropbox/Projects/Course/tech-test/bank-tech-test/lib/account.rb": [
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null
+      ]
+    },
+    "timestamp": 1488800517
+  }
+}
