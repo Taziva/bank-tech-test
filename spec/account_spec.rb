@@ -1,10 +1,17 @@
 require 'account'
 describe Account do
   let(:account){described_class.new}
-  it "has a balance" do
-    expect(account).to respond_to(:balance)
-    expect(account.balance).to eq 0;
+  context "on initialization" do
+    it "has a balance" do
+      expect(account).to respond_to(:balance)
+      expect(account.balance).to eq 0;
+    end
+    it 'has an array to hold transactions' do
+      expect(account).to respond_to(:transaction_history)
+      expect(account.transaction_history).to be_an(Array)
+    end
   end
+
   describe "#deposit" do
     context "when adding money to a new account" do
       it "responds to the deposit method" do
@@ -16,6 +23,7 @@ describe Account do
       end
     end
   end
+
   describe "#withdraw" do
     context "when withdrawing money from an account" do
       it "responds to the withdraw method" do
