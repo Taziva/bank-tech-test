@@ -1,11 +1,11 @@
 class Account
-  attr_reader :balance, :transaction_history
+  attr_reader :balance, :statement
 
   MIN_BALANCE = 0
 
   def initialize
     @balance = MIN_BALANCE
-    @transaction_history = []
+    @statement = Statement.new
   end
 
   def deposit(money)
@@ -32,7 +32,7 @@ private
 
   def add_transaction(description, money)
     transaction = Transaction.new(description: description, amount: money)
-    @transaction_history << transaction
+    @statement.history << transaction
   end
 
 end

@@ -1,7 +1,6 @@
 require 'account'
 RSpec.describe Account do
   let(:account){described_class.new}
-  let(:credit_transaction){double :transaction ,:description => "Credit", :amount => 100, :date => "03/03/2017"}
   let(:debit_transaction){double :transaction ,:description => "Debit", :amount => 100, :date => "03/03/2017"}
 
   context "on initialization" do
@@ -10,8 +9,8 @@ RSpec.describe Account do
       expect(account.balance).to eq 0;
     end
     it 'has an array to hold transactions' do
-      expect(account).to respond_to(:transaction_history)
-      expect(account.transaction_history).to be_an(Array)
+      expect(account).to respond_to(:statement)
+      expect(account.statement).to be_an(Object)
     end
   end
 
@@ -26,7 +25,7 @@ RSpec.describe Account do
       end
       it "records a transaction to the transaction history"do
         account.deposit(100)
-        expect(account.transaction_history.length).to eq 1
+        expect(account.statement.history.length).to eq 1
       end
     end
     context "when inputing a negative number" do
@@ -50,7 +49,7 @@ RSpec.describe Account do
           expect(account.balance).to eq(50)
         end
         it "records a transaction to the transaction history"do
-          expect{account.withdraw(50)}.to change{account.transaction_history.length}.by(1)
+          expect{account.withdraw(50)}.to change{account.statement.history.length}.by(1)
         end
       end
       context "when inputing a negative number" do
@@ -63,7 +62,7 @@ RSpec.describe Account do
           expect{account.withdraw(150)}.to raise_error("Insufficient balance in account")
         end
         it "it does not add the transaction to the transaction history" do
-          expect{account.withdraw(150) rescue 150 }.to change{account.transaction_history.length}.by(0)
+          expect{account.withdraw(150) rescue 150 }.to change{account.statement.history.length}.by(0)
         end
       end
     end
