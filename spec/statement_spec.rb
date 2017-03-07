@@ -10,8 +10,9 @@ describe Statement do
 
   describe "#add_transaction" do
     it "adds a transaction to the array" do
-      statement.add_transaction(credit_transaction)
-      expect(statement.history).to include(credit_transaction)
+      allow(credit_transaction).to receive(:return_data).and_return({:description => "Credit", :amount => 100, :date => "03/03/2017"})
+      statement.add_transaction(credit_transaction.return_data)
+      expect(statement.history).to include({:description => "Credit", :amount => 100, :date => "03/03/2017"})
     end
   end
 end

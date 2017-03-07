@@ -67,4 +67,12 @@ RSpec.describe Account do
       end
     end
   end
+
+  describe '#show_statement' do
+    context "when checking your transactions" do
+      it 'responds to show statement method' do
+        expect(account).to respond_to(:show_statement)
+      end
+    end
+  end
 end

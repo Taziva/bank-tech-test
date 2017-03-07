@@ -10,15 +10,20 @@ class Account
 
   def deposit(money)
     raise "Please enter a positive amount" if money < 0
-    add_transaction('Credit', money)
+    add_transaction(credit: money, debit: nil)
     add(money)
   end
 
   def withdraw(money)
     raise "Please enter a positive amount" if money < 0
     raise "Insufficient balance in account" if @balance - money < MIN_BALANCE
-    add_transaction('Debit', money)
+    add_transaction(debit:money, credit: nil)
     deduct(money)
+  end
+
+  def show_statement
+    printer = StatementPrinter.new
+    printer.print_statement(@statement.history)
   end
 
 private
@@ -30,9 +35,9 @@ private
     @balance-=money
   end
 
-  def add_transaction(description, money)
-    transaction = Transaction.new(description: description, amount: money)
-    @statement.history << transaction
+  def add_transaction(debit:, credit:)
+    transaction = Transaction.new(debit: debit, credit: credit, balance: @balance)
+    @statement.add_transaction(transaction.return_data)
   end
 
 end
