@@ -7,6 +7,4 @@ class Statement
   def add_transaction(transaction)
     @history << transaction
   end
-
-  
 end

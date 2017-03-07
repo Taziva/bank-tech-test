@@ -185,8 +185,6 @@
         1,
         11,
         null,
-        null,
-        null,
         null
       ],
       "/Users/shoniwamarovatsanga/Dropbox/Projects/Course/tech-test/bank-tech-test/spec/transaction_spec.rb": [
@@ -234,6 +232,6 @@
         null
       ]
     },
-    "timestamp": 1488887923
+    "timestamp": 1488888308
   }
 }
