@@ -1,12 +1,12 @@
 # Bank Tech Test
 
-##Specification
+## Specification
 * You should be able to interact with the your code via a REPL like IRB or the JavaScript console. (You don't need to implement a command line interface that takes input from STDIN.)
 * Deposits, withdrawal.
 Account statement (date, amount, balance) printing.
 * Data can be kept in memory (it doesn't need to be stored to a database or anything).
 
-##User Stories
+## User Stories
 ```
 1. As a user so that I have somewhere store my money I would like to have an account
 
@@ -19,7 +19,7 @@ Account statement (date, amount, balance) printing.
 5. As a user so that I can keep track of my transactions I would like to be able to see an account statement
 ```
 
-##Acceptance Criteria
+## Acceptance Criteria
 ```
 date       || credit || debit   || balance
 14/01/2012 ||        || 500.00  || 2500.00
@@ -27,14 +27,14 @@ date       || credit || debit   || balance
 10/01/2012 || 1000.00||         || 1000.00
 ```
 
-##Domain Models
+## Domain Models
 
 Money — Deposit—> Account
 Account — Withdraw —> Money
 Account — Store —> Transaction ——> History
 Account — Print —> Account Statement
 
-###Account
+### Account
 
 |Properties|Methods|
 |----------|-----|
@@ -42,7 +42,7 @@ Account — Print —> Account Statement
 |Statement|Withdraw|
 ||Show Statement|
 
-###Transactions
+### Transactions
 
 |Properties|Methods|
 |----------|-------|
@@ -51,14 +51,14 @@ Account — Print —> Account Statement
 |Date||
 |Balance||
 
-###Statement
+### Statement
 
 |Properties|Methods|
 |----------|-------|
 |Transaction History|add_transaction_to_history|
 
 
-###Statement Printer
+### Statement Printer
 
 |Properties|Methods|
 |----------|-------|
